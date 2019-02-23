@@ -13,8 +13,8 @@ class News {
     
     var name = ""
     var avatar = ""
-    var profiles: NewsProfiles?
-    var groups: NewsGroups?
+    var profiles: FriendInfo?
+    var groups: Groups?
     @objc dynamic var type = ""
     @objc dynamic var postID = 0
     @objc dynamic var sourceID = 0
@@ -40,34 +40,34 @@ class News {
     }
 }
 
-class NewsProfiles {
-    @objc dynamic var userID = 0
-    @objc dynamic var firstName = ""
-    @objc dynamic var lastName = ""
-    @objc dynamic var avatar = ""
-    
-    
-    
-    convenience init(json: JSON) {
-        self.init()
-        self.userID = json["id"].intValue
-        self.firstName = json["first_name"].stringValue
-        self.lastName = json["last_name"].stringValue
-        self.avatar = json["photo_50"].stringValue
-    }
-}
-
-class NewsGroups {
-    @objc dynamic var groupID = 0
-    @objc dynamic var name = ""
-    @objc dynamic var avatar = ""
-    
-    
-    
-    convenience init(json: JSON) {
-        self.init()
-        self.groupID = json["id"].intValue
-        self.name = json["name"].stringValue
-        self.avatar = json["photo_50"].stringValue
-    }
-}
+//class NewsProfiles {
+//    @objc dynamic var userID = 0
+//    @objc dynamic var firstName = ""
+//    @objc dynamic var lastName = ""
+//    @objc dynamic var avatar = ""
+//
+//
+//
+//    convenience init(json: JSON) {
+//        self.init()
+//        self.userID = json["id"].intValue
+//        self.firstName = json["first_name"].stringValue
+//        self.lastName = json["last_name"].stringValue
+//        self.avatar = json["photo_50"].stringValue
+//    }
+//}
+//
+//class NewsGroups {
+//    @objc dynamic var groupID = 0
+//    @objc dynamic var name = ""
+//    @objc dynamic var avatar = ""
+//
+//
+//
+//    convenience init(json: JSON) {
+//        self.init()
+//        self.groupID = json["id"].intValue
+//        self.name = json["name"].stringValue
+//        self.avatar = json["photo_50"].stringValue
+//    }
+//}

@@ -165,6 +165,7 @@ class VKService {
     
     func loadNewsPost(completion: @escaping ([News]) -> Void ) {
         let params: Parameters = [
+            "access_token": SessionManager.instance.token,
             "v": vkApiVer
         ]
         let url = baseUrl + "/newsfeed.get"
@@ -172,19 +173,19 @@ class VKService {
         Alamofire.request(url, method: .get, parameters: params).responseData (queue: DispatchQueue.global()) { repsons in
             guard let data = repsons.value else { return }
             let json = try! JSON(data: data)
-            //            print(json)
+                      print(json)
             let post = json["response"]["items"].compactMap { News(json: $0.1) }
-            let profiles = json["response"]["profiles"].compactMap { NewsProfiles(json: $0.1) }
-            let groups = json["response"]["groups"].compactMap { NewsGroups(json: $0.1) }
+            let profiles = json["response"]["profiles"].compactMap { FriendInfo(json: $0.1) }
+            let groups = json["response"]["groups"].compactMap { Groups(json: $0.1) }
             for i in 0..<post.count {
                 if post[i].sourceID > 0 {
                     print("Ошибка")
                 } else {
                     let soursId = -1 * post[i].sourceID
                     for group in groups {
-                        if group.groupID == soursId {
-                            post[i].avatar = group.avatar
-                            post[i].name = group.name
+                        if group.groupId == soursId {
+                            post[i].avatar = group.groupAvatar
+                            post[i].name = group.groupName
                         }
                     }
                     for profile in profiles {

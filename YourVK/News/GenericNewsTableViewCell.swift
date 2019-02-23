@@ -23,6 +23,9 @@ class GenericNewsTableViewCell: UITableViewCell {
     
     var hasText = false
     var hasPhoto = false
+    var hasAvatar = false
+    
+    var photoService: PhotoService?
     
     static func reuseIdentifier() -> String {
         return "GenericNewsTableViewCell"
@@ -56,7 +59,7 @@ class GenericNewsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(post: News, photo: UIImage?) {
+    func configure(post: News, photo: UIImage?, avatar: UIImage?) {
         authorName.text = post.name
         newsLikes.text = String(post.likes)
         newsComments.text = String(post.comments)
@@ -71,6 +74,11 @@ class GenericNewsTableViewCell: UITableViewCell {
         hasPhoto = (photo != nil)
         if (hasPhoto) {
             newsPhoto.image = photo
+        }
+        
+        hasAvatar = (avatar != nil)
+        if (hasAvatar) {
+            authorAvatar.image = avatar
         }
         
         setNeedsLayout()

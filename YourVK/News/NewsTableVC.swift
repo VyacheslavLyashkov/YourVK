@@ -11,8 +11,8 @@ import UIKit
 class NewsTableVC: UITableViewController {
     
     var newsPost = [News]()
-    var newsProfiles = [NewsProfiles]()
-    var newsGroups = [NewsGroups]()
+    var newsProfiles = [FriendInfo]()
+    var newsGroups = [Groups]()
     var vkService = VKService()
     var photoService: PhotoServiceWithoutDiskCache?
     
@@ -42,7 +42,7 @@ class NewsTableVC: UITableViewController {
         
         let post = newsPost[indexPath.row]
         cell.configure(post: post,
-                       photo: photoService?.photo(atIndexpath: indexPath, byUrl: post.photo))
+                       photo: photoService?.photo(atIndexpath: indexPath, byUrl: post.photo), avatar: photoService?.photo(atIndexpath: indexPath, byUrl: post.avatar))
         
         return cell
     }
